@@ -1,0 +1,84 @@
+group 'com.example'
+
+version '1.0-SNAPSHOT'
+
+// 公共依赖
+allprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'propdeps'
+    apply plugin: 'propdeps-idea'
+
+    //这里一定得要。在多模块下，不然编译失败，因为不会把信赖模块给打包。
+    jar {
+        enabled = true
+    }
+
+    ext {
+        // earl-core
+        commonsLang3Version = '3.3.2'
+        guavaVersion = '21.0'
+        commonsBeanutilsVersion = '1.9.3'
+        fastjsonVersion = '1.2.62'
+        springfoxSwaggerVersion = '2.9.2'
+        swaggerAnnotationsVersion = '1.5.21'
+        swaggerModelsVersion = '1.5.21'
+        druidVersion = '1.1.19'
+        lombokVersion = '1.18.8'
+        commonsCodecVersion = '1.13'
+        commonsIoVersion = '2.4'
+        annotationsVersion = '3.0.1'
+        httpclientVersion = '4.5.10'
+        dozerCoreVersion = '6.5.0'
+        shiroVersion = '1.4.0'
+        atmosphereVersion = '2.4.23'
+        javaxInjectVersion = '1'
+        jacksonCoreVersion = '2.9.5'
+        qiniuSDKVersion = '7.2.18'
+        poiVersion = '3.17'
+        jxlsPoiVersion = '1.2.0'
+        poiOoxmlVersion = '3.17'
+        metricsCoreVersion = '3.0.2'
+        aliyunJavaSDKVsVersion = '1.5.0'
+        aliyunJavaSDKCoreVersion = '4.4.9'
+        hikvisionJavaSDKCoreVersion = '1.1.2'
+    }
+
+    // springboot推荐版本不支持druid连接池
+    ext['logback.version'] = "1.1.6"
+
+    // 编译版本
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    // 确保class文件与targetCompatibility指定版本 或者更新的Java虚拟机兼容
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    //资源位置
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://raw.githubusercontent.com/xingePush/maven-repository/release/' }
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        testCompile 'org.springframework.boot:spring-boot-starter-test'
+        testCompile "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+        compile fileTree(dir: 'libs', include: '*.jar')
+    }
+
+    compileJava.dependsOn(processResources)
+
+}
+
+
+

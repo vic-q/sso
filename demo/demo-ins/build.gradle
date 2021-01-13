@@ -1,0 +1,54 @@
+dependencies {
+
+    compile 'org.springframework.boot:spring-boot-starter-actuator'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-quartz'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+
+    compile "org.apache.shiro:shiro-core:${shiroVersion}"
+    compile "org.apache.shiro:shiro-web:${shiroVersion}"
+    compile "org.apache.shiro:shiro-spring:${shiroVersion}"
+
+    // https://mvnrepository.com/artifact/org.pac4j/pac4j-cas
+    runtime group: 'org.pac4j', name: 'pac4j-cas', version: '3.6.1'
+    // https://mvnrepository.com/artifact/io.buji/buji-pac4j
+    compile group: 'io.buji', name: 'buji-pac4j', version: '4.1.1'
+
+    compile "org.apache.commons:commons-lang3:${commonsLang3Version}"
+    compile "com.google.guava:guava:${guavaVersion}"
+    compile "commons-beanutils:commons-beanutils:${commonsBeanutilsVersion}"
+    compile "com.alibaba:fastjson:${fastjsonVersion}"
+    compile "io.springfox:springfox-swagger2:${springfoxSwaggerVersion}"
+    compile "io.swagger:swagger-annotations:${swaggerAnnotationsVersion}"
+    compile "io.swagger:swagger-models:${swaggerModelsVersion}"
+
+    compile "com.alibaba:druid:${druidVersion}"
+    compile "commons-codec:commons-codec:${commonsCodecVersion}"
+    compile "com.google.code.findbugs:annotations:${annotationsVersion}"
+    compile "org.apache.httpcomponents:httpclient:${httpclientVersion}"
+
+    compile "com.github.dozermapper:dozer-core:${dozerCoreVersion}"
+
+    compile 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+    compile "com.sun.istack:istack-commons-runtime:2.2"
+
+    compile 'joda-time:joda-time:2.10.3'
+
+    // for Hibernate v5.3.3+ - v5.4.x
+    compile 'org.redisson:redisson-hibernate-53:3.11.2'
+
+    compile group: 'ch.qos.logback', name: 'logback-examples', version: '1.2.3'
+
+    compile group: 'ma.glasnost.orika', name: 'orika-core', version: '1.5.4'
+
+    // https://mvnrepository.com/artifact/org.apache.shiro/shiro-cas
+    compile group: 'org.apache.shiro', name: 'shiro-cas', version: '1.7.0'
+
+
+    optional "org.springframework.boot:spring-boot-configuration-processor"
+
+    runtimeOnly 'mysql:mysql-connector-java'
+
+}

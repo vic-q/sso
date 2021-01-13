@@ -1,0 +1,36 @@
+dependencies {
+
+    compile project(":demo-ins")
+
+    idea {
+        module {
+            inheritOutputDirs = false
+            outputDir = file("$buildDir/classes/main/")
+        }
+    }
+}
+
+task copyResourceFiles(type: Copy) {
+    from(new File('src/main/resources')) {
+        include '**/*'
+        include '**/tpl/word/*.docx'
+    }
+    into new File("$buildDir/classes/main/")
+}
+
+compileJava.dependsOn(copyResourceFiles)
+
+configurations {
+    providedRuntime
+}
+
+def profiles = 'dev'
+
+bootRun {
+    args = ["--spring.profiles.active=" + profiles]
+}
+
+bootJar {
+    enabled = true
+    mainClassName = 'com.boze.AppStarterApplication'
+}

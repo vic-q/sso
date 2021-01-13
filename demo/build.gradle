@@ -1,0 +1,30 @@
+buildscript {
+
+    ext {
+        springBootVersion = '2.4.1.RELEASE'
+        springBootGradleVersion = '2.4.1'
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://repo.spring.io/plugins-release' }
+        // 下载io.spring.gradle:propdeps-plugin插件
+        maven { url "https://repo.springsource.org/plugins-release" }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootGradleVersion}"
+        classpath 'io.spring.gradle:propdeps-plugin:0.0.9.RELEASE'
+    }
+
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+allprojects {
+    apply from: "${rootProject.projectDir}/parent.gradle"
+}
